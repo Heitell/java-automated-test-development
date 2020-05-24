@@ -8,7 +8,7 @@ public class Branch {
     private Collection<Account> accounts; //TODO impl
 
     public Branch(Collection<Account> accounts) {
-        if (accounts == null) throw new IllegalArgumentException();
+        if (accounts == null) throw new IllegalArgumentException("Accounts can not be null");
 
         this.accounts = accounts;
     }

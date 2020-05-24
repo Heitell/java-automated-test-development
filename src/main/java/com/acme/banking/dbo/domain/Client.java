@@ -10,8 +10,8 @@ public class Client {
     private Collection<UUID> accountIds = new ArrayList<>(); //TODO
 
     public Client(UUID id, String name) {
-        if (id == null) throw new IllegalArgumentException();
-        if (name == null) throw new IllegalArgumentException();
+        if (id == null) throw new IllegalArgumentException("Id can not be null");
+        if (name == null) throw new IllegalArgumentException("Name can not be null");
 
         this.id = id;
         this.name = name;
@@ -23,5 +23,13 @@ public class Client {
 
     public String getName() {
         return name;
+    }
+
+    public void setAccountId(UUID accountId) {
+        accountIds.add(accountId);
+    }
+
+    public Collection<UUID> getAccountIds() {
+        return accountIds;
     }
 }

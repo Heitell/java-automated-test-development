@@ -1,28 +1,27 @@
-package com.acme.banking.dbo;
+package com.acme.banking.dbo.domain;
 
-import com.acme.banking.dbo.domain.Account;
-import com.acme.banking.dbo.domain.Branch;
-import com.acme.banking.dbo.domain.Client;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.UUID;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 
 public class BranchTest {
 
     private Collection<Account> stubCollection;
 
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
     @Before
     public void prepareFixture() {
-        stubCollection = new HashSet<Account>();
+        stubCollection = new HashSet<>();
     }
 
     @After
@@ -45,7 +44,7 @@ public class BranchTest {
     }*/
 
     @Test
-    public void shouldReturnChildrenWhenPrompted() {
+    public void shouldSaveChildrenWhenCreated() {
         //region given
         //end region
 
@@ -60,21 +59,8 @@ public class BranchTest {
 
     @Test
     public void shouldThrowExceptionWhenNullName() {
-        //region given
-        //end region
-
-        //region when
-        Exception exception = new Exception();
-        try {
-            Branch sut = new Branch(null);
-        }
-        catch(Exception e) {
-            exception = e;
-        }
-        //end region
-
-        //region then
-        assertTrue(exception instanceof IllegalArgumentException);
-        //end region
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage("Accounts can not be null");
+        new Branch(null);
     }
 }
